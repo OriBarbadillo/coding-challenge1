@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import validator from 'validator'
-
+import {useNavigate} from 'react-router-dom';
 
 function Home() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+
+  const navigate = useNavigate();
+  
   const emailValidation = () => {
 
     if (validator.isEmail(email)) {
       setEmailError('Valid Email :)')
+      navigate('/ListedPosts')
     } else {
       setEmailError('Please, enter valid Email!')
     }    

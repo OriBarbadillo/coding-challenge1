@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./views/Home";
-import ListedPosts from "./views/listedPosts"; 
+import ListedPosts from "./views/ListedPosts"; 
 import {BrowserRouter as Router, Routes, Route,} from "react-router-dom";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />}></Route>
-        <Route path='listedPosts' component={ListedPosts}></Route>
+        <Route path='/ListedPosts' element={<ListedPosts />}></Route>
       </Routes>
     </Router>
     </>

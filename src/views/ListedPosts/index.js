@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
  
-function listedPosts() {
+function ListedPosts() {
   const [data, getData] = useState([]);
   const URL = "https://jsonplaceholder.typicode.com/posts";
  
@@ -40,4 +40,4 @@ function listedPosts() {
   );
 }
  
-export default listedPosts;
+export default ListedPosts;
