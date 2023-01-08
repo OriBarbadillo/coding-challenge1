@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
  
 function ListedPosts() {
   const [data, getData] = useState([]);
+  const [email, setEmail] = useState('');
+  const getDataEmail = () => {
+    return localStorage.getItem('email');
+  }
   const URL = "https://jsonplaceholder.typicode.com/posts";
- 
+
   useEffect(() => {
     fetchData();
+    setEmail(getDataEmail());
   }, []);
- 
+  
   const fetchData = () => {
     fetch(URL)
       .then((res) => res.json())
@@ -17,20 +22,21 @@ function ListedPosts() {
         getData(response);
       });
   };
+
+  const idSaved = ((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === (JSON.parse(localStorage.getItem('email'))))).id
+  console.log("data:",data)
+  console.log("Id saved:", idSaved)
   return (
     <div>
-      <h1>How Display API data in Table in React JS</h1>
+      <h1>Welcome!</h1>
+      <h2>Posts list of {email}</h2>
       <tbody>
         <tr>
-          <th>User ID</th>
-          <th>ID</th>
-          <th>Title</th>
+          <th>Subject</th>
           <th>Descripation</th>
         </tr>
-        {data.map((item, i) => (
+        {data.filter(post => post.userId === idSaved).map((item, i) => (
           <tr key={i}>
-            <td>{item.userId}</td>
-            <td>{item.id}</td>
             <td>{item.title}</td>
             <td>{item.body}</td>
           </tr>
