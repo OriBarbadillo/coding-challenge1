@@ -8,6 +8,7 @@ function Home() {
 
   const navigate = useNavigate();
 
+  
   function getNewId(){
     let lastEmailId = localStorage.getItem('lastEmailId') || '0';
     let newEmailId = JSON.parse(lastEmailId) + 1;
@@ -29,11 +30,8 @@ function Home() {
       if (localStorage.emails.includes(localStorage.email)){
         navigate('/ListedPosts')
       }
-      else{     
-        console.log("No estaba, se agrega nuevo id")
+      else{
         const newEmail = {id: getNewId(), email:email}
-        
-        console.log("Email despues:", newEmail)
         emails.push(newEmail)
         localStorage.setItem('emails', JSON.stringify(emails));
         alert("Has guardado tu email")
