@@ -15,12 +15,8 @@ function ListedPosts() {
     fetchData();
     setEmail(getDataEmail());
   }, []);
-  function navigateNewPost()
-  {
-    if(!newPost){
-      navigate('/newPost')
-    }
-  }
+  function navigateNewPost() {if(!newPost){navigate('/newPost')}}
+  function logOut() {navigate('/')}
   const fetchData = () => {
     fetch(URL)
       .then((res) => res.json())
@@ -30,7 +26,7 @@ function ListedPosts() {
         getData(response);
       });
   };
-  const posts = JSON.parse(localStorage.getItem('posts'))
+  var posts = JSON.parse(localStorage.getItem('posts') || "[]")
   const dataPost = data.concat(posts);
   const idSaved = ((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === (JSON.parse(localStorage.getItem('email'))))).id
 
@@ -39,6 +35,7 @@ function ListedPosts() {
       <h1>Welcome!</h1>
       <h2>Posts list of {email}</h2>
       <button onClick={navigateNewPost}>Compose</button>
+      <button onClick={logOut}>Log out</button>
       <tbody>
         <tr>
           <th>Subject</th>

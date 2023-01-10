@@ -16,24 +16,24 @@ function NewPost() {
     if (validator.isEmail(state.emailTo)) {
       setEmailError('Valid Email :)')
       if (!localStorage.emails.includes(localStorage.email)){
-        //No esta el destino, se manda pero no agrega nada
+        //The email address is not on the Local Storage, so it is send but not incluided on the post list
         alert("Post sent successfully!")
       }
       else{     
-        alert("Post sent successfully agregar!")
-        if(JSON.parse(localStorage.getItem('email')) === state.emailTo){
-          const idSaved = ((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === (JSON.parse(localStorage.getItem('email'))))).id
-          const newPost = {userId: idSaved, id: 1, title: state.subject, body: state.detail}
-          var posts = JSON.parse(localStorage.getItem('posts') || "[]")
-          posts.push(newPost)
-          localStorage.setItem('posts', JSON.stringify(posts))
-        }
+        const idEmailTo = ((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === state.emailTo)).id
+        console.log("ID Email to:", idEmailTo)
+        const newPost = {userId: idEmailTo, id: 1, title: state.subject, body: state.detail}
+        var posts = JSON.parse(localStorage.getItem('posts') || "[]")
+        posts.push(newPost)
+        localStorage.setItem('posts', JSON.stringify(posts))
+        alert("Post sent successfully!")
         navigate('/ListedPosts')
       }
     } else {
       setEmailError('Please, enter valid Email!')
     }    
   };
+  function close(){ navigate('/ListedPosts')}
 
   function handleOnChange(evt) {
     const value = evt.target.value;
@@ -53,6 +53,7 @@ function NewPost() {
           <label htmlFor="detail" className="label"> Detail:</label>
           <textarea type="text" name="detail" value={state.detail} onChange={handleOnChange} placeholder="detail"/>
           <button onClick={sendPost}>Sent</button>
+          <button onClick={close}>Close</button>
           <p className="emailError">{emailError}</p>
     </div>
   );
