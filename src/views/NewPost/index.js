@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import validator from 'validator'
 import {useNavigate} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function NewPost() {
   const [emailError, setEmailError] = useState("");
@@ -14,14 +16,14 @@ function NewPost() {
   function sendPost(){
 
     if (validator.isEmail(state.emailTo)) {
-      setEmailError('Valid Email :)')
-      if (!localStorage.emails.includes(localStorage.email)){
-        //The email address is not on the Local Storage, so it is send but not incluided on the post list
+      setEmailError('Valid email:)')
+      //The email address is not on the Local Storage, so it is send but not incluided on the post list
+      if (!((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === state.emailTo))){
         alert("Post sent successfully!")
+        navigate('/ListedPosts')
       }
       else{     
         const idEmailTo = ((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === state.emailTo)).id
-        console.log("ID Email to:", idEmailTo)
         const newPost = {userId: idEmailTo, id: 1, title: state.subject, body: state.detail}
         var posts = JSON.parse(localStorage.getItem('posts') || "[]")
         posts.push(newPost)
@@ -30,7 +32,7 @@ function NewPost() {
         navigate('/ListedPosts')
       }
     } else {
-      setEmailError('Please, enter valid Email!')
+      setEmailError('Please, enter valid email!')
     }    
   };
   function close(){ navigate('/ListedPosts')}
@@ -44,18 +46,27 @@ function NewPost() {
   }
 
   return (
-    <div className="home">
-        <h2>Compose post</h2>
-          <label htmlFor="emailTo" className="label"> Email:</label>
-          <input type="text" name="emailTo" value={state.emailTo} onChange={handleOnChange} placeholder="email"/>
-          <label htmlFor="subject" className="label"> Subject:</label>
-          <input type="text" name="subject" value={state.subject} onChange={handleOnChange} placeholder="subject"/>
-          <label htmlFor="detail" className="label"> Detail:</label>
-          <textarea type="text" name="detail" value={state.detail} onChange={handleOnChange} placeholder="detail"/>
-          <button onClick={sendPost}>Sent</button>
-          <button onClick={close}>Close</button>
-          <p className="emailError">{emailError}</p>
-    </div>
+    <html>
+      <Form >
+        <div>
+          <h2 class="mt-5 row justify-content-center">Compose post</h2>
+        </div>
+        <Form.Group className="newPost" class="col-lg-4 offset-lg-4" controlId="formBasicEmail" column="sm">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="text" name="emailTo" placeholder="Enter email" value={state.emailTo} onChange={handleOnChange} />
+          <Form.Label>Subject</Form.Label>
+          <Form.Control type="text" name="subject" placeholder="Enter subject" value={state.subject} onChange={handleOnChange} />
+          <Form.Label>Body</Form.Label>
+          <textarea class="form-control" name="detail" rows="3" placeholder="Enter details" value={state.detail} onChange={handleOnChange} />
+          <div class="d-grid gap-2 col-6 mx-auto mt-4">
+            <Button class="btn btn-primary" onClick={sendPost}>Sent</Button>
+            <Button class="btn btn-secondary" onClick={close}>Close</Button>
+            <p className="emailError">{emailError}</p>
+          </div>
+        </Form.Group>
+
+      </Form>
+    </html>
   );
 }
 

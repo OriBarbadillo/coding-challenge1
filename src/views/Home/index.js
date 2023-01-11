@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import validator from 'validator'
 import {useNavigate} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function Home() {
   const [email, setEmail] = useState("");
@@ -34,7 +36,6 @@ function Home() {
         const newEmail = {id: getNewId(), email:email}
         emails.push(newEmail)
         localStorage.setItem('emails', JSON.stringify(emails));
-        alert("Has guardado tu email")
         navigate('/ListedPosts')
       }
     } else {
@@ -47,22 +48,21 @@ function Home() {
   };
 
   return (
-    <div className="home">
-        <h2>Email Validation</h2>
-        <label htmlFor="email" className="label">
-          Email:
-        </label>
-          <input
-            id="email"
-            className="input"
-            type="email"
-            placeholder="email"
-            value={email}
-            onChange={handleOnChange}
-          />
-          <button onClick={emailValidation}>Check</button>
+    <html>
+      <Form >
+        <div>
+          <h2 class="mt-5 row justify-content-center">Testhub coding challenge</h2>
+        </div>
+        <Form.Group className="home" class="col-lg-4 offset-lg-4" controlId="formBasicEmail" column="sm">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleOnChange} />
+        </Form.Group> 
+        <Form.Group class="mt-3 col-lg-4 offset-lg-4">
+          <Button class="btn btn-primary" onClick={emailValidation}>Log in</Button>
           <p className="emailError">{emailError}</p>
-    </div>
+        </Form.Group>
+      </Form>
+    </html>
   );
 }
 
