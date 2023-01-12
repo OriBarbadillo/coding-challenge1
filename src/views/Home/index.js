@@ -59,7 +59,7 @@ function Home() {
         </Form.Group> 
         <Form.Group className="mt-3 col-lg-4 offset-lg-4">
           <Button className="btn btn-primary d-grid gap-2 col-4 mx-auto mt-4" onClick={emailValidation}>Log in</Button>
-          <p className="emailError">{emailError}</p>
+          <p className="emailError d-grid gap-2 col-6 mx-auto mt-4">{emailError}</p>
           <img src={messiWorldcup} alt='' className="d-grid gap-2 col-6 mx-auto mt-4"/>
         </Form.Group>
       </Form>
