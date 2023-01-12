@@ -35,9 +35,9 @@ function ListedPosts() {
   const idSaved = ((JSON.parse(localStorage.getItem('emails'))).find(p => p.email === (JSON.parse(localStorage.getItem('email'))))).id
 
   return (
-    <html>
+    
       
-      <body>
+      <main>
       <Navbar bg="light" expand="lg">
       <Container >
         <Navbar.Brand >Welcome!</Navbar.Brand>
@@ -71,9 +71,7 @@ function ListedPosts() {
       </Container>
 
     
-      </body>
-
-    </html>
+      </main>
 
   );
 }

@@ -3,6 +3,7 @@ import validator from 'validator'
 import {useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import messiWorldcup from '../../assets/img/messiWorldcup.jpg';
 
 function Home() {
   const [email, setEmail] = useState("");
@@ -48,21 +49,21 @@ function Home() {
   };
 
   return (
-    <html>
       <Form >
         <div>
-          <h2 class="mt-5 row justify-content-center">Testhub coding challenge</h2>
+          <h2  className="mt-5 row justify-content-center">Testhub coding challenge</h2>
         </div>
-        <Form.Group className="home" class="col-lg-4 offset-lg-4" controlId="formBasicEmail" column="sm">
+        <Form.Group className="col-lg-4 offset-lg-4" controlId="formBasicEmail" column="sm">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleOnChange} />
         </Form.Group> 
-        <Form.Group class="mt-3 col-lg-4 offset-lg-4">
-          <Button class="btn btn-primary" onClick={emailValidation}>Log in</Button>
+        <Form.Group className="mt-3 col-lg-4 offset-lg-4">
+          <Button className="btn btn-primary d-grid gap-2 col-4 mx-auto mt-4" onClick={emailValidation}>Log in</Button>
           <p className="emailError">{emailError}</p>
+          <img src={messiWorldcup} alt='' className="d-grid gap-2 col-6 mx-auto mt-4"/>
         </Form.Group>
       </Form>
-    </html>
+          
   );
 }
 

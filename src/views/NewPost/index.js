@@ -46,27 +46,24 @@ function NewPost() {
   }
 
   return (
-    <html>
       <Form >
         <div>
-          <h2 class="mt-5 row justify-content-center">Compose post</h2>
+          <h2 className="mt-5 row justify-content-center">Compose post</h2>
         </div>
-        <Form.Group className="newPost" class="col-lg-4 offset-lg-4" controlId="formBasicEmail" column="sm">
+        <Form.Group className="col-lg-4 offset-lg-4" controlId="formBasicEmail" column="sm">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="text" name="emailTo" placeholder="Enter email" value={state.emailTo} onChange={handleOnChange} />
           <Form.Label>Subject</Form.Label>
           <Form.Control type="text" name="subject" placeholder="Enter subject" value={state.subject} onChange={handleOnChange} />
           <Form.Label>Body</Form.Label>
-          <textarea class="form-control" name="detail" rows="3" placeholder="Enter details" value={state.detail} onChange={handleOnChange} />
-          <div class="d-grid gap-2 col-6 mx-auto mt-4">
-            <Button class="btn btn-primary" onClick={sendPost}>Sent</Button>
-            <Button class="btn btn-secondary" onClick={close}>Close</Button>
+          <textarea className="form-control" rows="3" placeholder="Enter details" value={state.detail} onChange={handleOnChange} />
+          <div className="d-grid gap-2 col-6 mx-auto mt-4">
+            <Button className="btn btn-primary" onClick={sendPost}>Sent</Button>
+            <Button className="btn btn-secondary" onClick={close}>Close</Button>
             <p className="emailError">{emailError}</p>
           </div>
         </Form.Group>
-
       </Form>
-    </html>
   );
 }
 
