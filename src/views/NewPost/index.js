@@ -56,7 +56,7 @@ function NewPost() {
           <Form.Label>Subject</Form.Label>
           <Form.Control type="text" name="subject" placeholder="Enter subject" value={state.subject} onChange={handleOnChange} />
           <Form.Label>Body</Form.Label>
-          <textarea className="form-control" rows="3" placeholder="Enter details" value={state.detail} onChange={handleOnChange} />
+          <textarea type="text" className="form-control" name="detail" rows="3" placeholder="Enter details" value={state.detail} onChange={handleOnChange} />
           <div className="d-grid gap-2 col-6 mx-auto mt-4">
             <Button className="btn btn-primary" onClick={sendPost}>Sent</Button>
             <Button className="btn btn-secondary" onClick={close}>Close</Button>
