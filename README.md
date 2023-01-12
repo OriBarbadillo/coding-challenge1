@@ -3,6 +3,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+You should install the following packages in order to could ejecute the web application correctly:
+#### `yarn install validator`
+#### `yarn install react-router-dom@6`
+#### `yarn install bootstrapt`
 
 In the project directory, you can run:
 
